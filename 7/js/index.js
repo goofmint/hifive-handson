@@ -86,23 +86,22 @@
 		'.confirm click': function(context, $el) {
 			// 初期化
 			context.event.preventDefault();
-			$('.modal-content').empty();
 			
 			// パラメータの設定
 			var params = {};
-			var ary = $('form').serializeArray();
+			var ary = this.$find('form').serializeArray();
 			for (i in ary) {
 				params[ary[i].name] = ary[i].value;
 			}
 			
 			// 複数行対応分のエスケープ処理
-			params.comment = handson.utils.escapeHTML(params.comment)
+			params.comment = h5.u.str.escapeHtml(params.comment)
 			
 			// ビューの設定
-			this.view.append('.modal-content', 'confirm', params);
+			this.view.update('.modal-content', 'confirm', params);
 			
 			// モーダル表示
-			$('#confirmModal').modal();
+			this.$find('#confirmModal').modal();
 		},
 		
 		'.register click': function(context, $el) {
